@@ -1,35 +1,43 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './Form.module.css';
 
-class Form extends Component {
-  state = {
-    name: '',
-    number: '',
+export default function Form({ onAddContact }) {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const onInputChange = event => {
+    switch (event.target.name) {
+      case 'name':
+        setName(event.target.value);
+        break;
+      case 'number':
+        setNumber(event.target.value);
+        break;
+      default:
+        console.log("There isn't such case");
+    }
   };
 
-  onInputChange = event =>
-    this.setState({ [event.target.name]: event.target.value });
-  
-  reset = () => this.setState({ name: '', number: ''})
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
 
-  render() {
-    const { onAddContact } = this.props;
-    const { name, number } = this.state;
-    return (
-      <form
-          className={s.form}
+  return (
+    <form
+      className={s.form}
       onSubmit={event => {
         event.preventDefault();
         onAddContact(name, number);
-        this.reset();
+        reset();
       }}
-      >
+    >
       <label>
-              <input
-                  className={s.input}
+        <input
+          className={s.input}
           value={name}
-          onChange={this.onInputChange}
+          onChange={onInputChange}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -38,10 +46,10 @@ class Form extends Component {
         />
       </label>
       <label>
-              <input
-                  className={s.input}
+        <input
+          className={s.input}
           value={number}
-          onChange={this.onInputChange}
+          onChange={onInputChange}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -49,14 +57,13 @@ class Form extends Component {
           required
         />
       </label>
-      <button className={s.btn} type="submit">Add contact</button>
+      <button className={s.btn} type="submit">
+        Add contact
+      </button>
     </form>
   );
-  }
-};
+}
 
 Form.propTypes = {
-    onAddContact: PropTypes.func.isRequired,
+  onAddContact: PropTypes.func.isRequired,
 };
-
-export default Form;
