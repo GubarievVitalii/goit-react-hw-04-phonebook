@@ -1,0 +1,17 @@
+.form {
+    display: grid;
+    justify-items: center;
+    justify-content: space-around;
+}
+.input {
+    margin-bottom: 5px;
+}
+
+.btn {
+    border-radius: 5px;
+    border: 1px solid rgb(146, 161, 241);
+    box-shadow: 3px 3px 10px rgb(146, 161, 241);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 15px;
+}

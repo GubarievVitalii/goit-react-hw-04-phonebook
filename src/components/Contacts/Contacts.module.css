@@ -1,0 +1,25 @@
+.contactsList {
+    list-style-type: decimal;
+}
+
+.item {
+    position: relative
+}
+
+.item:not(last-Chield) {
+    margin-bottom: 5px;
+}
+
+.contact {    
+    padding-right: 10px;
+}
+
+.btn {
+    position: absolute;
+    right: 3vw;
+    border-radius: 5px;
+    border: 1px solid rgb(146, 161, 241);
+    box-shadow: 3px 3px 10px rgb(146, 161, 241);
+    padding-left: 10px;
+    padding-right: 10px;
+}
