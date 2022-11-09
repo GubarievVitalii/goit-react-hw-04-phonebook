@@ -29,7 +29,7 @@ export default function App() {
     console.log(contacts);
     localStorage.setItem('contacts', JSON.stringify(contacts));
     // eslint-disable-next-line
-  }, [contacts.length]);
+  }, [contacts]);
 
   const onAddContact = (name, number) => {
     const newContact = contacts.find(
